@@ -32,7 +32,7 @@
           </ul>
         </div>
       </div>
-      <div class="">
+      <div>
         <div>
           <span class="uppercase text-sm text-gray-600 font-bold"
             >Nome Completo</span
@@ -41,7 +41,7 @@
             v-model="emailRequest.ownerRef"
             class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
             type="text"
-            placeholder=""
+            required
           />
         </div>
         <div class="mt-8">
@@ -49,7 +49,8 @@
           <input
             v-model="emailRequest.subject"
             class="w-full bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-            type="text"
+            type="email"
+            required
           />
         </div>
         <div class="mt-8">
@@ -57,13 +58,15 @@
             >mensagem</span
           >
           <textarea
-            :model="emailRequest.subject"
+            v-model="emailRequest.text"
             class="w-full h-32 bg-gray-300 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+            required
           />
         </div>
         <div class="mt-8">
           <button
             @click="sendEmail"
+            :disabled="desableButton"
             class="uppercase text-sm font-bold tracking-wide bg-blue-700 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:bg-blue-800"
           >
             Enviar mensagem
@@ -75,9 +78,11 @@
 </template>
 
 <script lang="ts">
+  import EmailRequest from '@/model/EmailRequest';
+  import toast from '@/model/message/message';
+  import { MessageType } from '@/model/message/messageType';
   import axios from 'axios';
   import { defineComponent } from 'vue';
-  import EmailRequest from '../model/EmailRequest';
 
   export default defineComponent({
     title: 'Contato',
@@ -87,21 +92,30 @@
           emailTo: 'luancoelho.dev@gmail.com',
           emailType: 'DEFAULT',
         } as EmailRequest,
+        desableButton: false,
+        toast,
       };
     },
     methods: {
       sendEmail(): void {
+        this.desableButton = true;
         axios
           .post(
             'https://ms-microservice.herokuapp.com/mse/send-email',
             this.emailRequest
           )
-          .then((response) => {
-            console.log(response);
-            this.cleanForm();
+          .then(() => {
+            this.toast(MessageType.SUCESS, 'Mensagem enviada com sucesso!');
           })
-          .catch((error) => {
-            console.warn(error);
+          .catch(() => {
+            this.toast(
+              MessageType.DANGER,
+              'Algo de errado aconteceu. Tente novamente mais tarde.'
+            );
+          })
+          .finally(() => {
+            this.cleanForm;
+            this.desableButton = false;
           });
       },
       cleanForm() {

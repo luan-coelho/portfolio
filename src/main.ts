@@ -1,24 +1,24 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router";
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
 
-import "normalize.css";
-import "./index.css";
-import "flowbite";
-import "animate.css";
+import 'animate.css';
+import 'flowbite';
+import 'normalize.css';
+import './index.css';
 
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faGithub,
   faLinkedin,
   faTelegram,
-} from "@fortawesome/free-brands-svg-icons";
-import { faAddressCard } from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-brands-svg-icons';
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 library.add(faGithub, faLinkedin, faTelegram, faAddressCard);
 
 createApp(App)
   .use(router)
-  .component("font-awesome-icon", FontAwesomeIcon)
-  .mount("#app");
+  .component('font-awesome-icon', FontAwesomeIcon)
+  .mount('#app');
