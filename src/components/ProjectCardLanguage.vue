@@ -1,10 +1,10 @@
 <template>
   <div>
-    <img class="w-11 mb-4" :src="logo" :alt="language" />
+    <img class='w-11 mb-4' :src='logo' :alt='language' />
   </div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
   import { defineComponent } from 'vue';
 
   export default defineComponent({
@@ -12,15 +12,15 @@
     props: {
       language: {
         type: String,
-        required: true,
-      },
+        required: true
+      }
     },
     data() {
       return {
-        logo: require('../assets/' + this.language + '.png'),
+        logo: require('../assets/' + this.language.toLowerCase() + '.png')
       };
     },
-    methods: {},
+    methods: {}
   });
 </script>
 

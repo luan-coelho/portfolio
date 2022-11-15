@@ -1,25 +1,28 @@
 module.exports = {
-  darkMode: "media",
+  darkMode: 'media',
   content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-    "./node_modules/flowbite/**/*.js"
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx}',
+    './node_modules/flowbite/**/*.js'
   ],
   theme: {
     screens: {
-      sx: "0px",
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px"
+      sx: '0px',
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px'
     },
     colors: {
-      "root-color": {
-        dark: "#131212",
-        litledark: "#2C2C2C"
+      'root-color': {
+        dark: '#131212',
+        litledark: '#2C2C2C'
+      },
+      'alice-blue': {
+        litledark: '#70809'
       }
     }
   },
-  plugins: [require("flowbite/plugin")]
+  plugins: [require('flowbite/plugin')]
 };

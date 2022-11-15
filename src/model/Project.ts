@@ -4,4 +4,7 @@ export default interface Project {
   description: string;
   html_url: string;
   language: string;
+  owner: {
+    login: string
+  };
 }

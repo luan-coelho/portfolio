@@ -1,23 +1,23 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router';
 
-import AboutView from "../views/AboutView.vue";
+import AboutView from '../views/AboutView.vue';
 
 const routes = [
   {
-    path: "/",
-    name: "Portfólio - Luan Coêlho",
+    path: '/',
+    name: 'Portfólio - Luan Coêlho',
     component: AboutView
   },
 
   {
-    path: "/projects",
-    name: "Projetos",
-    component: () => import("../views/ProjectsView.vue")
+    path: '/projects',
+    name: 'Projetos',
+    component: () => import('../views/ProjectsView.vue')
   },
   {
-    path: "/contact",
-    name: "Contato",
-    component: () => import("../views/ContactView.vue")
+    path: '/contact',
+    name: 'Contato',
+    component: () => import('../views/ContactView.vue')
   }
 ];
 
@@ -27,7 +27,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  document.title = to.name ? to.name.toString() : "Portfólio - Luan Coêlho";
+  document.title = to.name ? to.name.toString() : 'Portfólio - Luan Coêlho';
   next();
 });
 
